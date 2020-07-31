@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ngx-scanner</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="scanner-wrapper" *ngIf="scanActive">
+    <!-- <zxing-scanner #scanner *ngIf="scanActive" [formats]="allowedFormats" (scanSuccess)="scanSuccessHandler($event)">
+    </zxing-scanner> -->
+
+    <zxing-scanner #scanner [enable]="scanActive" [(device)]="desiredDevice" [formats]="allowedFormats" [torch]="torch"
+      (torchCompatible)="onTorchCompatible($event)" (camerasFound)="camerasFoundHandler($event)"
+      (camerasNotFound)="camerasNotFoundHandler($event)" (scanSuccess)="scanSuccessHandler($event)"
+      (scanError)="scanErrorHandler($event)" (scanFailure)="scanFailureHandler($event)"
+      (scanComplete)="scanCompleteHandler($event)">
+    </zxing-scanner>
+
+    <!-- <zxing-scanner #scanner [enable]="scanActive" [formats]="allowedFormats"></zxing-scanner> -->
+  </div>
+
+  <ion-button expand="full" color="success" (click)="showScannerDetails()">
+    <ion-icon name="eye"></ion-icon> Show Event
+  </ion-button>
+
+  <ion-button expand="full" (click)="enableScanner()" *ngIf="!scanActive">
+    <ion-icon name="qr-code-sharp"></ion-icon> Start Scan
+  </ion-button>
+
+  <ion-button expand="full" (click)="disableScanner()" color="danger" *ngIf="scanActive">
+    <ion-icon name="close"></ion-icon> Stop Scan
+  </ion-button>
+
+  <ion-button expand="full" (click)="reset()" color="warning" *ngIf="!scanActive && scanResult">
+    <ion-icon slot="start" name="refresh"></ion-icon> Reset
+  </ion-button>
+
+  <ion-card *ngIf="scanResult">
+    <ion-card-header>
+      <ion-card-title>Scan Result</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>{{ scanResult }}</ion-card-content>
+  </ion-card>
+</ion-content>

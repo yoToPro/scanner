@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>jsQR</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <input #fileInput type="file" accept="image/*capture=camera" hidden (change)="handleFile($event.target.files)">
+
+  <ion-button expand="full" (click)="captureImage()">
+    <ion-icon name="camera"></ion-icon> Capture Image
+  </ion-button>
+
+  <ion-button expand="full" (click)="startScan()">
+    <ion-icon name="qr-code-sharp"></ion-icon> Start Scan
+  </ion-button>
+
+  <ion-button expand="full" (click)="reset()" color="warning" *ngIf="!scanActive && scanResult">
+    <ion-icon slot="start" name="refresh"></ion-icon> Reset
+  </ion-button>
+
+  <div [ngClass]="{'scanEnabled': scanActive, 'scanDisabled': !scanActive}">
+    <video #video [hidden]="!scanActive"></video>
+    <canvas #canvas hidden></canvas>
+    <img src="./assets/qr_frame.png" alt="" *ngIf="scanActive">
+  </div>
+  
+  <ion-button expand="full" (click)="stopScan()" color="danger" *ngIf="scanActive">
+    <ion-icon slot="start" name="close"></ion-icon> Stop Scan
+  </ion-button>
+
+  <ion-card *ngIf="scanResult">
+    <ion-card-header>
+      <ion-card-title>Scan Result</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>{{ scanResult }}</ion-card-content>
+  </ion-card>
+</ion-content>

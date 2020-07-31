@@ -1,0 +1,15 @@
+.scanner-wrapper {
+    max-width: 70%;
+    max-height: 70%;
+    margin: 10px auto;
+}
+
+
+:host zxing-scanner::ng-deep video {
+    max-height: 50vh;    
+    object-fit: contain;
+}
+:host zxing-scanner::ng-deep {
+    border-style: solid;
+    border-color: #5d78ff;
+} 

@@ -1,0 +1,20 @@
+.scanEnabled {
+    // display: none;
+    --background: transparent !important;
+}
+
+.scanDisabled {
+    // display: block;
+    --background: white !important;
+}
+
+img {
+    opacity: 0.4;
+    max-width: 80%;
+    max-height: 80%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}

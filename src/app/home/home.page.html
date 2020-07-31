@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>QR Scanner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>Scan</ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button [routerLink]="['/ngx-scanner']">
+        <ion-icon name="barcode-sharp"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button [routerLink]="['/cordova-qr']">
+        <ion-icon name="camera-sharp"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button [routerLink]="['/js-qr']">
+        <ion-icon name="qr-code-sharp"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

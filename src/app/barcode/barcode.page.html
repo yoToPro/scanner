@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Barcode</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <img src="./assets/qr_scanner_white_frame.png" alt="" *ngIf="scanActive">
+  <ion-button expand="full" (click)="startScan()">
+    <ion-icon name="qr-code-sharp"></ion-icon> Start Scan
+  </ion-button>
+
+  <ion-button expand="full" (click)="reset()" color="warning" *ngIf="scanResult != null">
+    <ion-icon slot="start" name="refresh"></ion-icon> Reset
+  </ion-button>
+
+  <ion-card *ngIf="scanResult != null">
+    <ion-card-header>
+      <ion-card-title>Scan Result</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>{{ scanResult }}</ion-card-content>
+  </ion-card>
+</ion-content>

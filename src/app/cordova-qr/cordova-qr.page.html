@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cordova QR</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="scanActive">
+      <ion-button (click)="switchFlash()">
+        <ion-icon name="flash-outline" *ngIf="!flashActive"></ion-icon>
+        <ion-icon name="flash-off-outline" *ngIf="flashActive"></ion-icon>
+      </ion-button>
+      <ion-button (click)="switchCamera()">
+        <ion-icon name="camera-reverse-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="closeScanner()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'scanEnabled': scanActive, 'scanDisabled': !scanActive}">
+  <img src="./assets/qr_frame.png" alt="" *ngIf="scanActive">
+
+  <ion-button expand="full" (click)="startScan()" *ngIf="!scanActive">
+    <ion-icon name="qr-code-sharp"></ion-icon> Start Scan
+  </ion-button>
+
+  <ion-button expand="full" (click)="reset()" color="warning" *ngIf="!scanActive && scanResult != null">
+    <ion-icon slot="start" name="refresh"></ion-icon> Reset
+  </ion-button>
+
+  <ion-card *ngIf="!scanActive && scanResult != null">
+    <ion-card-header>
+      <ion-card-title>Scan Result</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>{{ scanResult }}</ion-card-content>
+  </ion-card>
+</ion-content>
